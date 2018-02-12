@@ -63,6 +63,8 @@ textarea:focus,
 
 #input-parent {
   width: max-content;
+  width: -moz-max-content;   
+  width: -webkit-max-content;
   margin: 1em auto 3em;
   position: relative;
 }
