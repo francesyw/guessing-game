@@ -10,19 +10,17 @@ body {
   text-align: center;
 }
 
-#main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 3em;
+#main { position: relative; }
+
+#app {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+  min-height: 100vh;
+  align-items: center;
 }
 
 #footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   margin: 1em auto;  
 }
 
@@ -88,7 +86,7 @@ textarea:focus,
 }
 
 #menu-btns {
-  margin: 3em auto;
+  margin: 3em auto 1em;
 }
 
 h1,
