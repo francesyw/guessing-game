@@ -1,11 +1,11 @@
 $(function() {
   var game = new Game();
-  // console.log(game.winningNumber);
+
   // submit button
   $('#submit').click(function(e) {
     var result = game.playersGuessSubmission(+$('#player-input').val());
     $('#player-input').val('');
-    $('#tipL').text(result[0]);
+    $('#tipL div').first().text(result[0]);
     $('#tipR').text(result[1]);
     // display guess
     $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length-1]);
@@ -17,20 +17,28 @@ $(function() {
     if (e.which == 13) { $('#submit').click(); }
   })
 
+  // hint
+  $('#hint').click(function() {
+    let win = game.provideHint();
+    $('#tipL div').last().text('The winning number is ' + win[0] + ', ' + win[1] + ', or ' + win[2]);
+    $(this).prop('disabled', true);
+  })
+
   // reset game
   $('#reset').click(function() {
     game = newGame();
     checkStatus(game.isOver);
-    $('#guesses > ul > li').each(function() { $(this).text('-'); });
-    $('.tip').text('');
+    $('#guesses').find('li').text('-');
+    $('.tip').find('div').text('');
     $('#player-input').focus();
-    // console.log(game.winningNumber);
   });
 
   function checkStatus(isOver) {
     $('#player-input, #submit, #hint').prop('disabled', isOver);
   }
 })
+
+//****** FUNCTIONS ********//
 
 function generateWinningNumber() {
   return Math.floor(Math.random() * 100) + 1;
