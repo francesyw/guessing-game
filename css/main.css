@@ -197,16 +197,12 @@ input#player-input:disabled {
 .tip {
   position: absolute;
   text-align: right;
-  color: #6b757c;
+  color: #5b533d;
   width: 13em;
   border: dashed 2px;
   border-radius: 10px;
   padding: 0.7em;
   font-size: 1.3em;
-}
-
-#tipL div:first-child {
-  /*font-size: 1.3em;*/
 }
 
 #tipL div:last-child {

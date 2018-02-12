@@ -10,7 +10,7 @@ $(function() {
     // display guess
     $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length-1]);
     if(game.isOver) $('#player-input, #submit, #hint').prop('disabled', true);
-    addTip();
+    if(!$('#tipR').hasClass('tip') || !$('#tipL').hasClass('tip')) $('#tipR, #tipL').addClass('tip');
   });
 
   // 'enter' key does the same thing
@@ -21,9 +21,9 @@ $(function() {
   // hint
   $('#hint').click(function() {
     let win = game.provideHint();
-    $('#tipL div').last().text('The winning number is ' + win[0] + ', ' + win[1] + ', or ' + win[2]);
+    $('#tipL div').last().html('The winning number is <b><em>' + win[0] + '</em></b>, <b><em>' + win[1] + '</em></b>, or <b><em>' + win[2] + '</em></b>.');
     $(this).prop('disabled', true);
-    addTip();
+    if(!$('#tipL').hasClass('tip')) $('#tipL').addClass('tip');
   })
 
   // reset game
@@ -35,10 +35,6 @@ $(function() {
     $('#player-input').focus();
     $('#tipL, #tipR').removeClass('tip');
   });
-
-  function addTip() {
-    if(!$('#tipL, #tipR').hasClass('tip')) $('#tipL, #tipR').addClass('tip');
-  }
 })
 
 //****** FUNCTIONS ********//
@@ -97,7 +93,7 @@ Game.prototype.checkGuess = function() {
   } else {
     this.pastGuesses.push(this.playersGuess);
     if (this.pastGuesses.length >= 5) {
-      msg = ['You Lose. <br>The winning number is ' + this.winningNumber + '.', resetM];
+      msg = ['You Lose. <br>The winning number is <b><em>' + this.winningNumber + '</em></b>.', resetM];
       this.isOver = true;
     } else if (this.difference() < 10) {
       msg = ['You\'re burning up!', this.isLower()];
