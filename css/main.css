@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  height: 100vh;
+}
+
 .bg-img {
   position: absolute;
   width: 100%;
@@ -9,7 +14,8 @@
   background: linear-gradient(180deg, #fbf8e9 0%, #d5d5c3 100%);
 }
 
-.center {
+.center,
+#main {
   text-align: center;
   position: relative;
 }
@@ -38,8 +44,7 @@ textarea:focus,
 }
 
 #headers {
-  padding: 1.5em;
-  margin: 1em auto 0em;
+  padding: 2.5em 1.5em 2em;
 }
 
 #guesses li {
@@ -97,7 +102,8 @@ h2 {
 h4 {
   font-size: 0.7em;
   font-weight: 100;
-  padding-top: 2em;
+  padding: 1em;
+  margin-bottom: 0;
 }
 
 a {
@@ -130,6 +136,7 @@ a:hover {
   color: hsl(45, 18%, 40%);
   background-color: #dfcd95;
   border: none;
+  opacity: 1;
 }
 
 .btn-primary:hover,
@@ -145,7 +152,7 @@ a:hover {
 }
 
 .btn-secondary,
-.btn-secondary:hover,
+.btn-secondary:hover:not(.disabled):not(:disabled),
 .btn-secondary:not(:disabled):not(.disabled):active {
   color: hsla(60, 20%, 95%, 1);
   background-color: hsla(45, 20%, 55%, 1);
@@ -154,11 +161,34 @@ a:hover {
   margin: 0 0.5em;
 }
 
-.btn-secondary:hover,
+.btn-secondary:hover:not(.disabled):not(:disabled),
 .btn-secondary:not(:disabled):not(.disabled):active:focus {
   box-shadow: 2px 2px 3px 0px hsla(60, 15%, 45%, 0.6);
 }
 
 .btn-secondary:not(:disabled):not(.disabled):active:focus {
   background: hsla(45, 20%, 35%, 1);
+}
+
+.btn-primary:disabled,
+.btn-primary:disabled:hover,
+.btn-secondary:disabled,
+.btn-secondary:disabled:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  opacity: 1;
+}
+
+input#player-input:disabled {
+  border-color: lightgrey;
+  background: hsl(0, 0%, 91%);
+}
+
+.tip {
+  position: absolute;
+}
+
+#tipR {
+  right: 0;
 }

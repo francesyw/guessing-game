@@ -18,6 +18,8 @@
       <h2>Guess a number between 1-100</h2>
     </div>
     <div id='main'>
+      <div class="tip" id="tipL"></div>
+      <div class="tip" id="tipR"></div>
       <div id='input-parent'>
         <!-- Player's guess input, and submit button -->
         <input type="text" id="player-input" class="center" maxlength="3" pattern="[0-9]{3}" placeholder="#" autofocus>
@@ -35,14 +37,17 @@
       </div>
       <div id="menu-btns">
         <!-- reset and hint buttons -->
-        <button type="button" class="btn btn-secondary">Reset</button>
-        <button type="button" class="btn btn-secondary">Hint</button>
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-secondary" id="hint">Hint</button>
       </div>
     </div>
   </div>
   <div id='footer' class="center">
     <h4>Made with 🍵&nbsp; by <a href="https://github.com/francesyw" target="_blank">@francesyw</a></h4>
   </div>
+  <!-- JS files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/game.js"></script>
 </body>
 
 </html>
