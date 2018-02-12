@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Guessing Game</title>
+  <!-- Bootstrap and CSS here-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <div class="bg-img"></div>
+  <div id='app' class="center container">
+    <div id='headers'>
+      <!-- Title and subtitles! -->
+      <h1>Welcome to the Guessing Game !</h1>
+      <h2>Guess a number between 1-100</h2>
+    </div>
+    <div id='main'>
+      <div class="tip" id="tipL"></div>
+      <div class="tip" id="tipR"></div>
+      <div id='input-parent'>
+        <!-- Player's guess input, and submit button -->
+        <input type="text" id="player-input" class="center" maxlength="3" pattern="[0-9]{3}" placeholder="#" autofocus>
+        <button type="button" id="submit" class="btn btn-primary">Go!</button>
+      </div>
+      <div id='guesses'>
+        <!-- unordered list of guesses -->
+        <ul>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+          <li>-</li>
+        </ul>
+      </div>
+      <div id="menu-btns">
+        <!-- reset and hint buttons -->
+        <button type="button" class="btn btn-secondary" id="reset">Reset</button>
+        <button type="button" class="btn btn-secondary" id="hint">Hint</button>
+      </div>
+    </div>
+  </div>
+  <div id='footer' class="center">
+    <h4>Made with 🍵&nbsp; by <a href="https://github.com/francesyw" target="_blank">@francesyw</a></h4>
+  </div>
+  <!-- JS files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="js/game.js"></script>
+</body>
+
+</html>
