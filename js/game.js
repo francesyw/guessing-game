@@ -5,11 +5,12 @@ $(function() {
   $('#submit').click(function(e) {
     var result = game.playersGuessSubmission(+$('#player-input').val());
     $('#player-input').val('');
-    $('#tipL div').first().text(result[0]);
+    $('#tipL div').first().html(result[0]);
     $('#tipR').text(result[1]);
     // display guess
     $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length-1]);
-    checkStatus(game.isOver);
+    if(game.isOver) $('#player-input, #submit, #hint').prop('disabled', true);
+    addTip();
   });
 
   // 'enter' key does the same thing
@@ -22,19 +23,21 @@ $(function() {
     let win = game.provideHint();
     $('#tipL div').last().text('The winning number is ' + win[0] + ', ' + win[1] + ', or ' + win[2]);
     $(this).prop('disabled', true);
+    addTip();
   })
 
   // reset game
   $('#reset').click(function() {
     game = newGame();
-    checkStatus(game.isOver);
+    $('#player-input, #submit, #hint').prop('disabled', false);
     $('#guesses').find('li').text('-');
-    $('.tip').find('div').text('');
+    $('#main').find('#tipL > div, #tipR').text('');
     $('#player-input').focus();
+    $('#tipL, #tipR').removeClass('tip');
   });
 
-  function checkStatus(isOver) {
-    $('#player-input, #submit, #hint').prop('disabled', isOver);
+  function addTip() {
+    if(!$('#tipL, #tipR').hasClass('tip')) $('#tipL, #tipR').addClass('tip');
   }
 })
 
@@ -94,7 +97,7 @@ Game.prototype.checkGuess = function() {
   } else {
     this.pastGuesses.push(this.playersGuess);
     if (this.pastGuesses.length >= 5) {
-      msg = ['You Lose. The winning number is ' + this.winningNumber + '.', resetM];
+      msg = ['You Lose. <br>The winning number is ' + this.winningNumber + '.', resetM];
       this.isOver = true;
     } else if (this.difference() < 10) {
       msg = ['You\'re burning up!', this.isLower()];
