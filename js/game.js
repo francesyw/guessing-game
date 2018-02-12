@@ -8,7 +8,7 @@ $(function() {
     $('#tipL').text(result[0]);
     $('#tipR').text(result[1]);
     // display guess
-    displayGuess();
+    $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length-1]);
     checkStatus(game.isOver);
   });
 
@@ -21,19 +21,11 @@ $(function() {
   $('#reset').click(function() {
     game = newGame();
     checkStatus(game.isOver);
-    displayGuess();
+    $('#guesses > ul > li').each(function() { $(this).text('-'); });
     $('.tip').text('');
     $('#player-input').focus();
     // console.log(game.winningNumber);
   });
-
-  function displayGuess() {
-    $('#guesses > ul > li').each(function(idx) {
-      let num = game.pastGuesses[idx];
-      let guess = num ? num : '-';
-      $(this).text(guess);
-    });
-  }
 
   function checkStatus(isOver) {
     $('#player-input, #submit, #hint').prop('disabled', isOver);
@@ -94,7 +86,7 @@ Game.prototype.checkGuess = function() {
   } else {
     this.pastGuesses.push(this.playersGuess);
     if (this.pastGuesses.length >= 5) {
-      msg = ['You Lose. The winning number is '+this.winningNumber+'.', resetM];
+      msg = ['You Lose. The winning number is ' + this.winningNumber + '.', resetM];
       this.isOver = true;
     } else if (this.difference() < 10) {
       msg = ['You\'re burning up!', this.isLower()];
@@ -103,7 +95,7 @@ Game.prototype.checkGuess = function() {
     } else if (this.difference() < 50) {
       msg = ['You\'re a bit chilly.', this.isLower()];
     } else if (this.difference() < 100) {
-      msg = ['You\'re ice cold!', this.isLower()]; 
+      msg = ['You\'re ice cold!', this.isLower()];
     }
   }
   return msg;
