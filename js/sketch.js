@@ -25,7 +25,7 @@ function draw() {
     // diff => diffVal
     //  0   => 0 
     //  +100 => height/2 
-    let y = height / 2 - 60 + noise(xoff, yoff) * 100 - 50;
+    let y = height * 0.4 + noise(xoff, yoff) * 100 - 50;
     curveVertex(i, y);
     xoff += map(diff, 0, 90, 0.5, 0.06);
   }
