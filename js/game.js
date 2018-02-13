@@ -11,9 +11,10 @@ $(function() {
     // display guess
     $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length - 1]);
     diff = game.difference();
+    offVal = setOffVal(game.playersGuess - game.winningNumber);
     if (game.isOver) { 
       $('#player-input, #submit, #hint').prop('disabled', true); 
-      diff = 90;
+      diff = DIFF;
     }
   });
 
@@ -25,7 +26,7 @@ $(function() {
   // hint
   $('#hint').click(function() {
     let win = game.provideHint();
-    let item = $('<p>The winning number is <b><em>' + win[0] + '</em></b>, <b><em>' + win[1] + '</em></b>, or <b><em>' + win[2] + '</em></b>.</p>').hide().fadeIn();
+    let item = $('<p>The winning number is <b><em>' + win[0] + '</em></b>, <b><em>' + win[1] + '</em></b>, <b><em>' + win[2] + '</em></b>, <b><em>' + win[3] + '</em></b>, or <b><em>' + win[4] + '</em></b>.</p>').hide().fadeIn();
     $('#tip').append(item);
     $(this).prop('disabled', true);
     $('#tip:hidden').fadeIn();
@@ -39,6 +40,9 @@ $(function() {
     $('#player-input').focus();
     $('#tip').text('');
     $('#tip').fadeOut();
+    yoff = Math.random()*10;
+    diff = DIFF;
+    offVal = setOffVal(-DIFF);
   });
 })
 
@@ -117,7 +121,7 @@ Game.prototype.checkGuess = function() {
 
 Game.prototype.provideHint = function() {
   var hint = [this.winningNumber];
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 4; i++) {
     hint.push(generateWinningNumber());
   }
   return shuffle(hint);

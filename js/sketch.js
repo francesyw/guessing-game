@@ -1,16 +1,17 @@
 var cnv;
 var yoff = 0;
 var offset = 10;
-var diff = 90;
-var offVal = -100;
+const DIFF = 90;
+var diff = DIFF;
+var offVal;
 
 function setup() {
-  cnv = createCanvas(windowWidth, windowHeight);
+  cnv = createCanvas(displayWidth, windowHeight);
   cnv.id('bg-animation');
   fill('#beb1f2d9');
   noStroke();
   frameRate(30);
-  // console.log(game);
+  offVal = setOffVal(-DIFF);
 }
 
 function draw() {
@@ -20,12 +21,7 @@ function draw() {
   curveVertex(-offset, height + offset);
   var xoff = 0;
   for (let i = -offset * 10; i <= width + offset * 10; i += offset * 5) {
-    // var diffVal = map(diff, 100, -100, -height/2, height/2);
-    // height/2 + diffVal + noise (min, max)
-    // diff => diffVal
-    //  0   => 0 
-    //  +100 => height/2 
-    let y = height * 0.4 + noise(xoff, yoff) * 100 - 50;
+    let y = height * 0.4 + offVal + noise(xoff, yoff) * 90 - 45;
     curveVertex(i, y);
     xoff += map(diff, 0, 90, 0.5, 0.06);
   }
@@ -36,6 +32,6 @@ function draw() {
   // console.log(game.difference());
 }
 
-function setOffVal(diff, isLower) {
-  return isLower ? -diff : diff;
+function setOffVal(d) {
+  return map(d, 100, -100, -height*0.5, height*0.53);
 }
