@@ -204,7 +204,7 @@ input#player-input:disabled {
 #tip {
   background: linear-gradient(180deg, hsla(42, 100%, 97%, 1) 0%, #d5d5c300 100%);
   min-width: 10.5em;
-  max-width: 15em;
+  /*max-width: 17em;*/
   text-align: right;
   padding: 1.3em 2em 3em;
   border-radius: 10px;

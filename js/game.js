@@ -104,7 +104,7 @@ Game.prototype.checkGuess = function() {
   } else {
     this.pastGuesses.push(this.playersGuess);
     if (this.pastGuesses.length >= 5) {
-      msg = 'You Lose. <br>The winning number is <b><em>' + this.winningNumber + '</em></b>.<br>' + resetM;
+      msg = 'You Lose. <br>The winning number is <b><em>' + this.winningNumber + '</em></b>.<p>' + resetM + '</p>';
       this.isOver = true;
     } else if (this.difference() < 10) {
       msg = 'You\'re burning up!<br>' + this.isLower();
