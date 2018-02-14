@@ -90,7 +90,7 @@ textarea:focus,
   border: inset hsla(45, 55%, 65%, 0.75) 5px;
   background: #f9f5ec;
   color: hsla(128, 20%, 46%, 1);
-  padding: 0.7em;
+  padding: 0.3em;
   box-shadow: 2px 4px 100px -13px #9f927acc;
 }
 

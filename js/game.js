@@ -9,7 +9,7 @@ $(function() {
     $('#tip').html(result);
     $('#tip:hidden').fadeIn();
     // display guess
-    $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length - 1]);
+    displayGuess();
     diff = game.difference();
     offVal = setOffVal(game.playersGuess - game.winningNumber);
     if (game.isOver) { 
@@ -30,6 +30,8 @@ $(function() {
     $('#tip').append(item);
     $(this).prop('disabled', true);
     $('#tip:hidden').fadeIn();
+    // game.pastGuesses.push('#');
+    // displayGuess();
   })
 
   // reset game
@@ -44,6 +46,10 @@ $(function() {
     diff = DIFF;
     offVal = setOffVal(-DIFF);
   });
+
+  function displayGuess() {
+    $('#guesses li:nth-child(' + game.pastGuesses.length + ')').text(game.pastGuesses[game.pastGuesses.length - 1]);
+  }
 })
 
 //****** FUNCTIONS ********//
@@ -118,6 +124,10 @@ Game.prototype.checkGuess = function() {
   }
   return msg;
 };
+
+Game.prototype.pushCheck = function(num) {
+  // 
+}
 
 Game.prototype.provideHint = function() {
   var hint = [this.winningNumber];
